@@ -1,0 +1,12 @@
+{
+  "name": "bozobit",
+  "version": "0.1.0",
+  "description": "Lets you flag Twitter users as bozos",
+  "main": "src/bozobit.js",
+  "author": "Leopold Tal G <leopold.tal.dg@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+  	"test": "echo 'TODO: unit tests' && exit 1",
+  	"build": "cd src && zip ../bozobit.xpi -r * && cd .."
+  }
+}

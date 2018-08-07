@@ -1,0 +1,6 @@
+# System
+Thumbs.db
+.DS_Store
+
+# Packaged
+bozobit.xpi
