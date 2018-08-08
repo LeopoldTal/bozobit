@@ -12,7 +12,8 @@
 	"content_scripts": [
 		{
 			"matches": ["*://twitter.com/*"],
-			"js": ["bozobit.js"]
+			"js": ["bozobit.js"],
+			"css": ["bozobit.css"]
 		}
 	],
 	
