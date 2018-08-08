@@ -4,6 +4,11 @@
 	"version": "0.1.0",
 	
 	"description": "Lets you flag Twitter users as bozos",
+	
+	"icons": {
+		"48": "assets/funnel-logo-48.png"
+	},
+	
 	"content_scripts": [
 		{
 			"matches": ["*://twitter.com/*"],
