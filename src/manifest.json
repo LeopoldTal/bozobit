@@ -9,6 +9,8 @@
 		"48": "assets/funnel-logo-48.png"
 	},
 	
+	"permissions": ["storage"],
+	
 	"content_scripts": [
 		{
 			"matches": ["*://twitter.com/*"],

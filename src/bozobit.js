@@ -6,20 +6,35 @@
 const BOZO_CLASS = 'bozobit-is-bozo';
 const MENU_CONTROL_CLASS = 'bozobit-menu-control';
 
-let bozos = ['108024396']; // TODO: store in storage.sync
+let bozos = [];
 
 /* Bozo list */
 // TODO: if there are a LOT of bozos, keep sorted and binary search
 
+function loadBozoList() {
+	return browser.storage.sync.get('bozos')
+		.then(function (res) {
+			bozos = res.bozos || [];
+			return bozos;
+		});
+}
+
+function saveBozoList() {
+	return browser.storage.sync.set({bozos: bozos});
+	// TODO: handle error on save
+}
+
 function addBozo(userId) {
-	bozos.push(userId);
+	return loadBozoList().then(() => bozos.push(userId)).then(saveBozoList);
 }
 
 function removeBozo(userId) {
-	let idIndex = bozos.indexOf(userId);
-	if (idIndex > -1) {
-		bozos.splice(idIndex, 1);
-	}
+	return loadBozoList().then(function () {
+		let idIndex = bozos.indexOf(userId);
+		if (idIndex > -1) {
+			bozos.splice(idIndex, 1);
+		}
+	}).then(saveBozoList);
 }
 
 /* Mark individual tweets */
@@ -70,8 +85,7 @@ function setMenuControl(tweet, isBozo, userId) {
 	// control callback
 	let action = isBozo ? removeBozo : addBozo;
 	let controlCallback = function() {
-		action(userId);
-		refreshPage();
+		action(userId).then(refreshPage);
 	};
 	
 	// create menu control
@@ -130,8 +144,11 @@ function watchNewTweets(mutationList) {
 	});
 }
 
-let observer = new MutationObserver(watchNewTweets);
-observer.observe(document.body, { childList: true, subtree: true });
+loadBozoList().then(function() {
+	// Watch new tweets
+	let observer = new MutationObserver(watchNewTweets);
+	observer.observe(document.body, { childList: true, subtree: true });
 
-// Mark tweets that are already there when the script loads
-refreshPage();
+	// Mark tweets that are already there when the script loads
+	refreshPage();
+});
