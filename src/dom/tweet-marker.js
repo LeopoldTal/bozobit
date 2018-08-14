@@ -59,9 +59,11 @@ class TweetMarker {
 		}
 	
 		// control callback
-		let action = isBozo ? this.bozoList.removeBozo : this.bozoList.addBozo;
+		let bozoList = this.bozoList;
+		let action = isBozo ? bozoList.removeBozo : bozoList.addBozo;
 		let controlCallback = e => {
-			action.call(this.bozoList, userId).then(window.bozobitRefreshPage);
+			action.call(bozoList, userId)
+				.then(() => window.bozobitRefreshPage());
 		};
 	
 		// create menu control
