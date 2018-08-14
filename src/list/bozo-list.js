@@ -5,21 +5,17 @@ class BozoList {
 	
 	fetchList() {
 		this.promise = browser.storage.sync.get('bozos')
-			.then(function (res) {
-				return res.bozos || [];
-			}.bind(this));
+			.then(res => res.bozos || []);
 		return this.promise;
 	}
 	
 	getList() {
-		return this.promise.catch(this.fetchList.bind(this));
+		return this.promise.catch(() => this.fetchList());
 	}
 	
 	// TODO: if there are a LOT of bozos, keep sorted and binary search
 	isBozo(userId) {
-		return this.getList().then(function (bozos) {
-			return ~bozos.indexOf(userId);
-		});
+		return this.getList().then(bozos => ~bozos.indexOf(userId));
 	}
 	
 	addBozo(userId) {

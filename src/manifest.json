@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "bozobit",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	
 	"description": "Lets you flag Twitter users as bozos",
 	
@@ -14,7 +14,12 @@
 	"content_scripts": [
 		{
 			"matches": ["*://twitter.com/*"],
-			"js": ["bozo-list.js", "bozobit.js"],
+			"js": [
+			  "list/bozo-list.js",
+			  "dom/tweet-marker.js",
+			  "dom/page-watcher.js",
+			  "bozobit.js"
+			],
 			"css": ["bozobit.css"]
 		}
 	],

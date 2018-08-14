@@ -16,7 +16,10 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'test/mocks/*.js',
-      'src/**/*.js',
+      'src/list/bozo-list.js',
+      'src/dom/tweet-marker.js',
+      'src/dom/page-watcher.js',
+      'src/bozobit.js',
       'test/**/*.js'
     ],
 
