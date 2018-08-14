@@ -6,36 +6,8 @@
 const BOZO_CLASS = 'bozobit-is-bozo';
 const MENU_CONTROL_CLASS = 'bozobit-menu-control';
 
-let bozos = [];
+let bozoList = new BozoList();
 
-/* Bozo list */
-// TODO: if there are a LOT of bozos, keep sorted and binary search
-
-function loadBozoList() {
-	return browser.storage.sync.get('bozos')
-		.then(function (res) {
-			bozos = res.bozos || [];
-			return bozos;
-		});
-}
-
-function saveBozoList() {
-	return browser.storage.sync.set({bozos: bozos});
-	// TODO: handle error on save
-}
-
-function addBozo(userId) {
-	return loadBozoList().then(() => bozos.push(userId)).then(saveBozoList);
-}
-
-function removeBozo(userId) {
-	return loadBozoList().then(function () {
-		let idIndex = bozos.indexOf(userId);
-		if (idIndex > -1) {
-			bozos.splice(idIndex, 1);
-		}
-	}).then(saveBozoList);
-}
 
 /* Mark individual tweets */
 
@@ -48,10 +20,10 @@ function markTweet(tweet) {
 		return;
 	}
 	
-	let isBozo = ~bozos.indexOf(userId);
-	
-	setTweetClass(tweet, isBozo);
-	setMenuControl(tweet, isBozo, userId);
+	bozoList.isBozo(userId).then(function (isBozo) {
+		setTweetClass(tweet, isBozo);
+		setMenuControl(tweet, isBozo, userId);
+	});
 }
 
 // Adds or removes the bozo class on a tweet
@@ -83,7 +55,7 @@ function setMenuControl(tweet, isBozo, userId) {
 	}
 	
 	// control callback
-	let action = isBozo ? removeBozo : addBozo;
+	let action = (isBozo ? bozoList.removeBozo : bozoList.addBozo).bind(bozoList);
 	let controlCallback = function() {
 		action(userId).then(refreshPage);
 	};
@@ -114,8 +86,6 @@ function setMenuControl(tweet, isBozo, userId) {
 	} else {
 		menu.appendChild(menuControl);
 	}
-	
-	console.log(menu.outerHTML);
 }
 
 // Mark all the tweets inside a html element
@@ -144,7 +114,7 @@ function watchNewTweets(mutationList) {
 	});
 }
 
-loadBozoList().then(function() {
+bozoList.fetchList().then(function() {
 	// Watch new tweets
 	let observer = new MutationObserver(watchNewTweets);
 	observer.observe(document.body, { childList: true, subtree: true });
