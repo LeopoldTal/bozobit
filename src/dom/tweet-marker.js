@@ -41,7 +41,21 @@ class TweetMarker {
 
 	// Adds appropriate "Mark/Unmark as bozo" action in tweet menu
 	setMenuControl(tweet, isBozo, userId) {
-		// find menu
+		let menu = this.findMenu(tweet);
+		if (!menu) {
+			return;
+		}
+	
+		this.clearOldControls(menu);
+	
+		let controlCallback = this.getControlCallback(isBozo, userId);
+		let menuControl = this.createMenuControl(menu, isBozo, controlCallback);
+		
+		this.attachControl(menu, menuControl);
+	}
+	
+	// Finds dropdown menu <ul>
+	findMenu(tweet) {
 		let dropdowns = tweet.getElementsByClassName('dropdown-menu');
 		if (dropdowns.length !== 1) {
 			return;
@@ -50,34 +64,51 @@ class TweetMarker {
 		if (menus.length !== 1) {
 			return;
 		}
-		let menu = menus[0];
+		return menus[0];
+	}
 	
-		// clear existing controls if any
+	// Clears existing controls if any
+	clearOldControls(menu) {
 		let oldControls = menu.getElementsByClassName(MENU_CONTROL_CLASS);
 		while (oldControls[0]) {
 			oldControls[0].parentNode.removeChild(oldControls[0]);
 		}
+	}
 	
+	// Builds a callback function for the menu control
+	getControlCallback(isBozo, userId) {
 		// control callback
 		let bozoList = this.bozoList;
 		let action = isBozo ? bozoList.removeBozo : bozoList.addBozo;
-		let controlCallback = e => {
-			action.call(bozoList, userId)
-				.then(() => window.bozobitRefreshPage());
+		return function (e) {
+			// FIXME: why won't the menu close?!
+			action.call(bozoList, userId).then(() => window.bozobitRefreshPage());
 		};
+	}
 	
-		// create menu control
+	// Creates a control button
+	createMenuControl(menu, isBozo, controlCallback) {
 		let menuControl = document.createElement('li');
+		
 		menuControl.classList.add(MENU_CONTROL_CLASS);
 		menuControl.role = 'presentation';
+		
 		let button = document.createElement('button');
 		button.classList.add('dropdown-link');
 		button.type = 'button';
 		button.role = 'menu-item';
+		
 		button.innerText = isBozo ? 'Unmark as bozo' : 'Mark as bozo';
+		
 		button.addEventListener('click', controlCallback, false);
+		
 		menuControl.appendChild(button);
+		
+		return menuControl;
+	}
 	
+	// Inserts control button into menu at appropriate position
+	attachControl(menu, menuControl) {
 		// find insertion position
 		let position = 0;
 		while (position < menu.children.length
