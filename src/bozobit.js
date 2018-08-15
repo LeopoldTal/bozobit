@@ -3,12 +3,19 @@
 * Flags Twitter users as bozos
 **/
 
-let bozoList = new BozoList();
+class BozoBitApp {
+	constructor() {
+		this.bozoList = new BozoList();
+		this.tweetMarker = new TweetMarker(this.bozoList);
+		this.pageWatcher = new PageWatcher(this.tweetMarker);
+	}
+	
+	start() {
+		return this.bozoList.fetchList().then(() => {
+			this.pageWatcher.run();
+		});
+	}
+}
 
-let tweetMarker = new TweetMarker(bozoList);
-
-let pageWatcher = new PageWatcher(tweetMarker);
-
-bozoList.fetchList().then(function() {
-	pageWatcher.run();
-});
+let bozoBitApp = new BozoBitApp();
+bozoBitApp.start();
