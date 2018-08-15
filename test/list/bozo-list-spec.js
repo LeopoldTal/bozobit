@@ -16,7 +16,7 @@ describe('BozoList', function () {
 					expect(bozos).toEqual(fakeList);
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		it('defaults to empty', function (done) {
@@ -27,7 +27,7 @@ describe('BozoList', function () {
 					expect(bozos).toEqual([]);
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		// TODO: handle failure
@@ -43,7 +43,7 @@ describe('BozoList', function () {
 					expect(browser.storage.sync.get).toHaveBeenCalledTimes(2);
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 	});
 	
@@ -56,7 +56,7 @@ describe('BozoList', function () {
 					expect(bozos).toEqual(fakeList);
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		it('defaults to empty', function (done) {
@@ -67,7 +67,7 @@ describe('BozoList', function () {
 					expect(bozos).toEqual([]);
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		it('only fetches the list once', function (done) {
@@ -81,7 +81,7 @@ describe('BozoList', function () {
 					expect(browser.storage.sync.get).toHaveBeenCalledTimes(1);
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 	});
 	
@@ -98,7 +98,7 @@ describe('BozoList', function () {
 					expect(browser.storage.sync.get).toHaveBeenCalledWith('bozos');
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		it('rejects an id not in the list', function (done) {
@@ -109,7 +109,7 @@ describe('BozoList', function () {
 					expect(browser.storage.sync.get).toHaveBeenCalledWith('bozos');
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 	});
 	
@@ -125,7 +125,7 @@ describe('BozoList', function () {
 						.toHaveBeenCalledWith({bozos: [23, 42, 1337, 314]});
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		it('keeps values unique', function (done) {
@@ -138,7 +138,7 @@ describe('BozoList', function () {
 					expect(browser.storage.sync.set).toHaveBeenCalledWith({bozos: [23, 42, 1337]});
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		// TODO: handle failure
@@ -156,7 +156,7 @@ describe('BozoList', function () {
 						.toHaveBeenCalledWith({bozos: [23, 1337]});
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		it('does nothing if not in the list', function (done) {
@@ -170,7 +170,7 @@ describe('BozoList', function () {
 						.toHaveBeenCalledWith({bozos: [23, 42, 1337]});
 					done();
 				})
-				.catch(done.reject);
+				.catch(done.fail);
 		});
 		
 		// TODO: handle failure
