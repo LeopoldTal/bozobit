@@ -11,7 +11,7 @@
 
 # Install
 
-`bozobit` isn't a listed add-on yet. Check back here soon!
+[Get `bozobit`](https://addons.mozilla.org/firefox/addon/bozobit/) on the Firefox add-ons website.
 
 # Usage
 
