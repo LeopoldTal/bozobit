@@ -1,3 +1,5 @@
-.tweet.bozobit-is-bozo .tweet-text { /* FIXME: this looks confusing for quote tweets */
+.tweet.bozobit-is-bozo .js-tweet-text, /* normal timeline tweets */
+.QuoteTweet .bozobit-is-bozo .QuoteTweet-text /* quote tweets */
+{
 	font-family: "Comic Sans MS", "Comic Sans", cursive;
 }

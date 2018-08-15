@@ -19,6 +19,16 @@ describe('TweetMarker', function () {
 			expect(tweetMarker.markTweet).toHaveBeenCalledWith(child);
 		});
 		
+		it('marks quote tweets', function () {
+			let parent = document.createElement('div');
+			let child = document.createElement('div');
+			child.className = 'QuoteTweet-innerContainer';
+			parent.appendChild(child);
+			tweetMarker.markChildTweets(parent);
+			
+			expect(tweetMarker.markTweet).toHaveBeenCalledWith(child);
+		});
+		
 		it('doesn\'t mark non-tweets', function () {
 			let parent = document.createElement('div');
 			let child = document.createElement('div');

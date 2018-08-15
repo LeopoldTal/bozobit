@@ -10,7 +10,15 @@ class TweetMarker {
 	
 	// Mark all the tweets inside a html element
 	markChildTweets(node) {
+		// mark timeline tweets
 		for (let tweet of node.getElementsByClassName('tweet')) {
+			this.markTweet(tweet);
+		}
+		
+		// mark quote tweets
+		// why is the user info on the inner container and not the div.QuoteTweet?
+		// this will likely break with twitter updates
+		for (let tweet of node.getElementsByClassName('QuoteTweet-innerContainer')) {
 			this.markTweet(tweet);
 		}
 	}
