@@ -106,7 +106,7 @@ class TweetMarker {
 		
 		button.innerText = this.getControlText(isBozo);
 		
-		button.addEventListener('click', controlCallback, false);
+		button.addEventListener('click', controlCallback);
 		
 		menuControl.appendChild(button);
 		
