@@ -14,6 +14,12 @@
     "karma": "^3.0.0",
     "karma-coverage": "^1.1.2",
     "karma-firefox-launcher": "^1.1.0",
-    "karma-jasmine": "^1.1.2"
+    "karma-jasmine": "^1.1.2",
+    "stryker": "^0.26.1",
+    "stryker-api": "^0.18.0",
+    "stryker-html-reporter": "^0.15.1",
+    "stryker-jasmine": "^0.9.0",
+    "stryker-javascript-mutator": "^0.8.0",
+    "stryker-karma-runner": "^0.16.2"
   }
 }

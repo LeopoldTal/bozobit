@@ -9,4 +9,4 @@ node_modules/
 bozobit.xpi
 
 # Coverage report
-coverage/
+reports/
