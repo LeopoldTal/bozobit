@@ -4,7 +4,13 @@
 
 Requires [yarn](https://yarnpkg.com/lang/en/). 
 
-Clone the repo, then install dependencies with
+Clone the repo
+
+````
+git clone https://github.com/LeopoldTal/bozobit.git
+````
+
+then install dependencies with
 
 ````
 yarn
