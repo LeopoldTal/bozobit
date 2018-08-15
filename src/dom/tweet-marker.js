@@ -21,10 +21,10 @@ class TweetMarker {
 	markTweet(tweet) {
 		let userId = tweet.dataset.userId;
 		if (!userId) {
-			return;
+			return Promise.reject();
 		}
 	
-		this.bozoList.isBozo(userId).then(isBozo => {
+		return this.bozoList.isBozo(userId).then(isBozo => {
 			this.setTweetClass(tweet, isBozo);
 			this.setMenuControl(tweet, isBozo, userId);
 		});
@@ -49,7 +49,7 @@ class TweetMarker {
 		this.clearOldControls(menu);
 	
 		let controlCallback = this.getControlCallback(isBozo, userId);
-		let menuControl = this.createMenuControl(menu, isBozo, controlCallback);
+		let menuControl = this.createMenuControl(isBozo, controlCallback);
 		
 		this.attachControl(menu, menuControl);
 	}
@@ -82,12 +82,18 @@ class TweetMarker {
 		let action = isBozo ? bozoList.removeBozo : bozoList.addBozo;
 		return function (e) {
 			// FIXME: why won't the menu close?!
-			action.call(bozoList, userId).then(() => window.bozobitRefreshPage());
+			return action.call(bozoList, userId)
+				.then(() => window.bozobitRefreshPage());
 		};
 	}
 	
+	// Get button text
+	getControlText(isBozo) {
+		return isBozo ? 'Unmark as bozo' : 'Mark as bozo';
+	}
+	
 	// Creates a control button
-	createMenuControl(menu, isBozo, controlCallback) {
+	createMenuControl(isBozo, controlCallback) {
 		let menuControl = document.createElement('li');
 		
 		menuControl.classList.add(MENU_CONTROL_CLASS);
@@ -98,7 +104,7 @@ class TweetMarker {
 		button.type = 'button';
 		button.role = 'menu-item';
 		
-		button.innerText = isBozo ? 'Unmark as bozo' : 'Mark as bozo';
+		button.innerText = this.getControlText(isBozo);
 		
 		button.addEventListener('click', controlCallback, false);
 		
