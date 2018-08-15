@@ -7,3 +7,6 @@ node_modules/
 
 # Packaged
 bozobit.xpi
+
+# Coverage report
+coverage/
