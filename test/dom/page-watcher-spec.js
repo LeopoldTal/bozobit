@@ -66,11 +66,24 @@ describe('PageWatcher', function () {
 			expect(pageWatcher.refreshPage).toHaveBeenCalled();
 		});
 		
-		it('observes changes', function (done) {
+		it('observes changes to body', function (done) {
 			pageWatcher.run();
 			let el = document.createElement('div');
 			document.body.appendChild(el);
 			// TODO: Can I prove the observer will fire before the timeout?
+			setTimeout(function () {
+				expect(pageWatcher.watchNewTweets).toHaveBeenCalled();
+				done();
+			});
+		});
+		
+		it('observes changes to subtree', function (done) {
+			let parent = document.createElement('div');
+			document.body.appendChild(parent);
+			
+			pageWatcher.run();
+			let child = document.createElement('div');
+			parent.appendChild(child);
 			setTimeout(function () {
 				expect(pageWatcher.watchNewTweets).toHaveBeenCalled();
 				done();

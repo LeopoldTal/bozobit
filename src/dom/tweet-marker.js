@@ -124,10 +124,6 @@ class TweetMarker {
 		position++;
 	
 		// insert in menu
-		if (position < menu.children.length-1) {
-			menu.insertBefore(menuControl, menu.children[position]);
-		} else {
-			menu.appendChild(menuControl);
-		}
+		menu.insertBefore(menuControl, menu.children[position]);
 	}
 }

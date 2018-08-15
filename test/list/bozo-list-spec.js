@@ -7,6 +7,16 @@ describe('BozoList', function () {
 		fakeStored = Promise.resolve({bozos: fakeList});
 	});
 	
+	it('starts out with list unloaded', function (done) {
+		let list = new BozoList();
+		list.promise
+			.then(done.fail)
+			.catch(function (rejectMessage) {
+				expect(rejectMessage).toBe('list not loaded');
+				done();
+			});
+	});
+	
 	describe('fetchList', function () {
 		it('loads the list of bozos', function (done) {
 			spyOn(browser.storage.sync, 'get').and.returnValue(fakeStored);
