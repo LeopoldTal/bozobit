@@ -1338,7 +1338,7 @@ json5@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
 
-karma-coverage:
+karma-coverage@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/karma-coverage/-/karma-coverage-1.1.2.tgz#cc09dceb589a83101aca5fe70c287645ef387689"
   dependencies:
@@ -2292,7 +2292,45 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-stryker:
+stryker-api@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/stryker-api/-/stryker-api-0.18.0.tgz#007ffdf870027e6d6e5bbe7c6a0f2666787a16f6"
+  dependencies:
+    tslib "~1.9.3"
+
+stryker-html-reporter@^0.15.1:
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/stryker-html-reporter/-/stryker-html-reporter-0.15.1.tgz#9fbd7e28a9f4a48a577d1880afd6f5fc5852e09f"
+  dependencies:
+    file-url "~2.0.0"
+    lodash "~4.17.10"
+    mkdirp "~0.5.1"
+    mz "~2.7.0"
+    rimraf "~2.6.1"
+    typed-html "~0.6.0"
+
+stryker-jasmine@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/stryker-jasmine/-/stryker-jasmine-0.9.0.tgz#49229e70033104b471ab3d2107f631311dd125df"
+
+stryker-javascript-mutator@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/stryker-javascript-mutator/-/stryker-javascript-mutator-0.8.0.tgz#7aabc2cd5da45c49f920aa366b171bb6eb78777f"
+  dependencies:
+    babel-core "~6.26.0"
+    babel-generator "~6.26.0"
+    babylon "~6.18.0"
+    lodash "~4.17.4"
+    tslib "~1.9.3"
+
+stryker-karma-runner@^0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/stryker-karma-runner/-/stryker-karma-runner-0.16.2.tgz#2b77af438ef5c446a4049e976f0b6a44040bcaf4"
+  dependencies:
+    semver "~5.5.0"
+    tslib "~1.9.3"
+
+stryker@^0.26.1:
   version "0.26.1"
   resolved "https://registry.yarnpkg.com/stryker/-/stryker-0.26.1.tgz#c40a06d084e2434b818de39add813a0aca447e5c"
   dependencies:
@@ -2317,44 +2355,6 @@ stryker:
     tree-kill "~1.2.0"
     tslib "~1.9.3"
     typed-rest-client "~1.0.7"
-
-stryker-api:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/stryker-api/-/stryker-api-0.18.0.tgz#007ffdf870027e6d6e5bbe7c6a0f2666787a16f6"
-  dependencies:
-    tslib "~1.9.3"
-
-stryker-html-reporter:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/stryker-html-reporter/-/stryker-html-reporter-0.15.1.tgz#9fbd7e28a9f4a48a577d1880afd6f5fc5852e09f"
-  dependencies:
-    file-url "~2.0.0"
-    lodash "~4.17.10"
-    mkdirp "~0.5.1"
-    mz "~2.7.0"
-    rimraf "~2.6.1"
-    typed-html "~0.6.0"
-
-stryker-jasmine:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/stryker-jasmine/-/stryker-jasmine-0.9.0.tgz#49229e70033104b471ab3d2107f631311dd125df"
-
-stryker-javascript-mutator:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/stryker-javascript-mutator/-/stryker-javascript-mutator-0.8.0.tgz#7aabc2cd5da45c49f920aa366b171bb6eb78777f"
-  dependencies:
-    babel-core "~6.26.0"
-    babel-generator "~6.26.0"
-    babylon "~6.18.0"
-    lodash "~4.17.4"
-    tslib "~1.9.3"
-
-stryker-karma-runner:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/stryker-karma-runner/-/stryker-karma-runner-0.16.2.tgz#2b77af438ef5c446a4049e976f0b6a44040bcaf4"
-  dependencies:
-    semver "~5.5.0"
-    tslib "~1.9.3"
 
 supports-color@^2.0.0:
   version "2.0.0"
