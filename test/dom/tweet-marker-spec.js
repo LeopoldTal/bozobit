@@ -251,6 +251,7 @@ describe('TweetMarker', function () {
 			spyOn(window, 'bozobitRefreshPage');
 			spyOn(BozoListStub, 'addBozo').and.returnValue(Promise.resolve());
 			spyOn(BozoListStub, 'removeBozo').and.returnValue(Promise.resolve());
+			spyOn(document.body, 'click');
 		});
 		
 		it('adds a bozo', function (done) {
@@ -271,6 +272,12 @@ describe('TweetMarker', function () {
 				expect(window.bozobitRefreshPage).toHaveBeenCalled();
 				done();
 			}).catch(done.fail);
+		});
+		
+		it('clicks outside the menu', function () {
+			let callback = tweetMarker.getControlCallback(false, '42');
+			callback();
+			expect(document.body.click).toHaveBeenCalled();
 		});
 	});
 	

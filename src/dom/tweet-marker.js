@@ -89,7 +89,7 @@ class TweetMarker {
 		let bozoList = this.bozoList;
 		let action = isBozo ? bozoList.removeBozo : bozoList.addBozo;
 		return function (e) {
-			// FIXME: why won't the menu close?!
+			document.body.click(); // close the menu
 			return action.call(bozoList, userId)
 				.then(() => window.bozobitRefreshPage());
 		};
