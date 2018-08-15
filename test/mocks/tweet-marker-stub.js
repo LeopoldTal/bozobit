@@ -1,0 +1,3 @@
+window.TweetMarkerStub = {
+	markChildTweets: function () {}
+};
